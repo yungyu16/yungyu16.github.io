@@ -1,0 +1,72 @@
+# Site settings
+title: 羊羽'Blog
+SEOTitle: 羊羽'Blog
+header-img: img/background.jpg
+email: yunyu16@qq.com
+description: "一头扎进代码的汪洋大海..."
+keyword: "羊羽,老宋,博客"
+github_username: yungyu16
+url: "http://yungyu.github.io"          # your host, for absolute URL
+baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
+github_repo: "https://github.com/yungyu16/yungyu16.github.io" # you code repository
+
+# Sidebar settings
+sidebar: true
+sidebar-about-description: "韶光易逝，劝君惜取少年时"
+sidebar-avatar: /img/avatar.png      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+# Build settings
+# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
+permalink: pretty
+paginate: 10
+
+exclude: [ "less","node_modules","Gruntfile.js","package.json","README.md","Makefile","newblog","depblog" ]
+anchorjs: true # if you want to customize anchor. check out line:181 of `post.html`
+
+plugins: [ jekyll-paginate ]
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
+markdown: kramdown
+highlighter: rouge
+#redcarpet:
+#    extensions: [ "hard_wrap","autolink", "tables", "strikethrough", "superscript", "with_toc_data", "highlight", "prettify","no_intra_emphasis"]
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important
+
+# Gitalk
+gitalk:
+  enable: true    #是否开启Gitalk评论
+  clientID: Ov23liFx2DYLcMd5J0cx                           #生成的clientID
+  clientSecret: c49f7f7cd3f59baebd0c8341836727a08be0ceb3   #生成的clientSecret
+  repo: yungyu16.github.io    #仓库名称
+  owner: yungyu16    #github用户名
+  admin: yungyu16
+  distractionFreeMode: true #是否启用类似FB的阴影遮罩
+
+# 统计
+
+# Analytics settings
+# Baidu Analytics
+ba_track_id: 388b5d3e19dbf02b34794c456e97fa2e
+# Google Analytics
+ga_track_id: G-3QHKS03LW1   # Format: UA-xxxxxx-xx
+
+
+# Featured Tags
+featured-condition-size: 1              # 相同标签数量大于这个数，才会出现在首页
+
+
+# Progressive Web Apps
+chrome-tab-theme-color: "#000000"
+
+
+# Friends
+friends: [
+  {
+    title: "博客园 | 羊羽",
+    href: "https://www.cnblogs.com/yungyu16"
+  }
+]

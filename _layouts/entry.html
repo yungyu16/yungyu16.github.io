@@ -1,0 +1,83 @@
+---
+layout: default
+---
+
+<!-- Page Header -->
+<header class="intro-header"
+        style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <!-- USE SIDEBAR -->
+        <!-- PostList Container -->
+        <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                postlist-container
+            ">
+            {{ content }}
+        </div>
+        <!-- Sidebar Container -->
+        <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+            <!-- Short About -->
+            <section class="visible-md visible-lg">
+                <div class="short-about">
+                    {% if site.sidebar-avatar %}
+                    <a href="{{ site.baseurl }}/about.html">
+                        <img src="{{site.sidebar-avatar}}"/>
+                    </a>
+                    {% endif %}
+                    {% if site.sidebar-about-description %}
+                    <p>{{site.sidebar-about-description}}</p>
+                    {% endif %}
+                    <ul class="list-inline">
+                        <li>
+                            <a href="{{ "/feed.xml" | prepend: site.baseurl }}">
+                            <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                                    </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://github.com/{{ site.github_username }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p>✉️ {{site.email}}</p>
+                </div>
+            </section>
+            <hr>
+            <!-- Featured Tags -->
+            {% include widget-hot-tags.html %}
+            <hr>
+            <!-- Friends Blog -->
+            {% include widget-friends.html %}
+        </div>
+    </div>
+</div>
