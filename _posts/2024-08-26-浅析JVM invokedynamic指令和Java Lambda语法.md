@@ -19,8 +19,8 @@ tags:
 
 > 你发任你发，我用Java8：[【Jetbrains】2023 开发者生态系统现状](https://www.jetbrains.com/zh-cn/lp/devecosystem-2023/java/)
 
-JDK8如此旺盛的生命力，与其优异的兼容性、稳定性和足够日常开发使用的语言特性有极大的关系，这其中最引人瞩目的语言特性莫过于Lambda表达式。
-Lambda表达式语言特性引入Java语言后，赋予了Java语言更便捷的函数式编程魔力(相对匿名内部类)，同时也让其更简洁，毕竟Java代码写起来啰嗦这点一直被开发者们广泛诟病。
+JDK8如此旺盛的生命力，与其优异的兼容性、稳定性和足够日常开发使用的语言特性有极大的关系，这其中最引人瞩目的语言特性莫过于Lambda表达式。  
+Lambda表达式语言特性引入Java语言后，赋予了Java语言更便捷的函数式编程魔力(相对匿名内部类)，同时也让其更简洁，毕竟Java代码写起来啰嗦这点一直被开发者们广泛诟病。  
 本文将从JVM和Java两个层面着手，和大家一起深入解析Lambda表达式。
 
 # 2. Java和JVM的关系
@@ -56,8 +56,8 @@ Java是一种运行在JVM平台上的高级语言，但是JVM平台绝不是只�
 
 这个特点一方面保证了JVM语言类型安全，另一方面也限制了JVM平台对动态类型高级语言的支持。比如想让JavaScript、Python等动态语言代码编译成JVM字节码运行在JVM平台上的开销会比较大，性能也会比较差。
 
-为了解决上述问题， Java7引入了一条新的虚拟机指令：**invokedynamic**。这是自JVM 1.0以来**第一次引入新的虚拟机指令**，invokedynamic与其他 invoke*指令不同的是它允许由**应用级的代码**来决定方法解析(链接、分派)。
-所谓的【应用级的代码来决定方法解析】需要对照之前的invoke*指令来理解。之前的4种invoke*指令，在编译期就必须要明确目标方法并hardcode到字节码中，JVM在运行时直接解析、链接、动态分派硬编码指定的目标方法。
+为了解决上述问题， Java7引入了一条新的虚拟机指令：**invokedynamic**。这是自JVM 1.0以来**第一次引入新的虚拟机指令**，invokedynamic与其他 invoke*指令不同的是它允许由**应用级的代码**来决定方法解析(链接、分派)。  
+所谓的【应用级的代码来决定方法解析】需要对照之前的invoke*指令来理解。之前的4种invoke*指令，在编译期就必须要明确目标方法并hardcode到字节码中，JVM在运行时直接解析、链接、动态分派硬编码指定的目标方法。  
 而invokedynamic指令通过**回调机制**来获取需要调用的目标方法。即先调用业务自定义回调方法做方法决策(解析、链接)，再调用其返回的目标方法。笔者称之为【**两阶段调用**】。
 伪代码对比如下：
 
@@ -69,10 +69,10 @@ Java是一种运行在JVM平台上的高级语言，但是JVM平台绝不是只�
 
 **invokevirtual指令直接调用目标方法，invokedynamic直接调用回调方法，再调用回调方法返回的方法句柄**
 
-传统的invoke*指令直接调用字节码中指定的目标方法，如`Son.testMethod1`，invokedynamic指令在调用时，先调用字节码中指定的回调方法，如`Son.dynamicMethodCallback`，然后再调用回调方法(hook)返回的方法引用。
+传统的invoke*指令直接调用字节码中指定的目标方法，如`Son.testMethod1`，invokedynamic指令在调用时，先调用字节码中指定的回调方法，如`Son.dynamicMethodCallback`，然后再调用回调方法(hook)返回的方法引用。  
 而上述`dynamicMethodCallback`即为【**应用级的代码或者我们常说的业务代码**】，可以在不影响性能的前提下，灵活的干预JVM方法解析、链接的过程。
 
-总结来说，所谓应用级的代码其实也是一个方法，在这里这个方法被称为**引导方法（Bootstrap Method）**，简称 **BSM**。invokedynamic执行时，BSM先被调用并返回一个 CallSite(调用点)对象，这个对象就和invokedynamic链接在一起。
+总结来说，所谓应用级的代码其实也是一个方法，在这里这个方法被称为**引导方法（Bootstrap Method）**，简称 **BSM**。invokedynamic执行时，BSM先被调用并返回一个 CallSite(调用点)对象，这个对象就和invokedynamic链接在一起。  
 以后再执行这条invokedynamic指令都不会创建新的 CallSite 对象。CallSite就是一个 MethodHandle(方法句柄)的holder，方法句柄指向一个调用点真正执行的方法。
 **一阶段：**调用引导方法确定并缓存CallSite(MethodHandle)
 **二阶段：**调用CallSite(MethodHandle)
@@ -83,13 +83,13 @@ Java是一种运行在JVM平台上的高级语言，但是JVM平台绝不是只�
 
 # 4. 方法句柄：MethodHandle
 
-前面我们知道invokedynamic指令支持通过业务层面自定义的BSM来灵活的决策被调用的目标方法，也就是上述的【一阶段】。BSM方法的返回值就是【二阶段】调用的方法。
-但是和C、Python等语言不同，Java中方法/函数不是一等公民，也就是在Java中无法将【方法变量】作为方法返回值。
+前面我们知道invokedynamic指令支持通过业务层面自定义的BSM来灵活的决策被调用的目标方法，也就是上述的【一阶段】。BSM方法的返回值就是【二阶段】调用的方法。  
+但是和C、Python等语言不同，Java中方法/函数不是一等公民，也就是在Java中无法将【方法变量】作为方法返回值。  
 为了解决这个问题，Java标准库提供了一个新的类型MethodHandle，用于实现类似C语言中的方法指针、JavaScript/Python中方法变量的能力。该API和反射API呈现的能力相似，但是性能更好。
 
 ![图片](/img/2024-08-26-浅析JVM invokedynamic指令和Java Lambda语法/20240826195001549.jpg)
 
-上述为MethodHandle API的基本使用，该课题展开又是一篇长文。总之，我们可以用MethodHandle来作为【方法变量】，变相的将【Java方法】提升为【一等公民】，从而可以在BSM中用Java代码实现动态编排、决策，返回合适的方法指针。
+上述为MethodHandle API的基本使用，该课题展开又是一篇长文。总之，我们可以用MethodHandle来作为【方法变量】，变相的将【Java方法】提升为【一等公民】，从而可以在BSM中用Java代码实现动态编排、决策，返回合适的方法指针。  
 这也是上述**invokedynamic+BSM机制**能够成立的一个基础。
 
 > 详见：[秒懂Java之方法句柄(MethodHandle)](https://blog.csdn.net/ShuSheng0007/article/details/107066856)
@@ -98,7 +98,7 @@ Java是一种运行在JVM平台上的高级语言，但是JVM平台绝不是只�
 
 # 5. Lambda表达式简介
 
-Java的Lambda表达式，是传统的【匿名内部类】特性在特定场景下的平替特性。所谓的特定场景，即我们熟知的FunctionalInterface。
+Java的Lambda表达式，是传统的【匿名内部类】特性在特定场景下的平替特性。所谓的特定场景，即我们熟知的FunctionalInterface。  
 当【匿名内部类】匿名实现的是一个FunctionalInterface时，可以用Lambda表达式平替。
 示例如下：
 
@@ -213,8 +213,7 @@ IntUnaryOperator anyName()；
 
 ![图片](/img/2024-08-26-浅析JVM invokedynamic指令和Java Lambda语法/20240826195356463.jpg)
 
-换句话说，该invokedynamic指令希望相应的BSM返回一个`IntUnaryOperator`的工厂方法句柄，然后invokedynamic指令再调用这个方法句柄，创建出一个map方法需要的
-`IntUnaryOperator`类型的参数。
+换句话说，该invokedynamic指令希望相应的BSM返回一个`IntUnaryOperator`的工厂方法句柄，然后invokedynamic指令再调用这个方法句柄，创建出一个map方法需要的`IntUnaryOperator`类型的参数。
 
 ## 3. BSM方法序号
 
@@ -269,8 +268,7 @@ BootstrapMethods_attribute {
 2. IntStream.map方法需要的参数类型：`IntUnaryOperator`
 3. 编译器(javac)编译产生的包含Lambda表达式代码内容的静态方法：`lambda$main$0(I)I`
 
-接下来就是调用`java.lang.invoke.LambdaMetafactory#metafactory`方法，传递上述必要的上下文参数，接受`metafactory`方法返回的`IntUnaryOperator applyAsInt()`类型的MethodHandle并调用该MethodHandle，
-继而得到IntStream.map方法需要的参数：`IntUnaryOperator`。
+接下来就是调用`java.lang.invoke.LambdaMetafactory#metafactory`方法，传递上述必要的上下文参数，接受`metafactory`方法返回的`IntUnaryOperator applyAsInt()`类型的MethodHandle并调用该MethodHandle，继而得到IntStream.map方法需要的参数：`IntUnaryOperator`。
 
 ## 6. LambdaMetafactory#metafactory
 
@@ -288,6 +286,7 @@ BootstrapMethods_attribute {
 | instantiatedMethodType |              上述【BSM方法参数】处指定的<(I)I>               |
 
 LambdaMetafactory根据上述上下文，使用ASM库，动态生成了一个如下所示的`IntUnaryOperator`适配类，用于桥接Lambda表达式代码块到`IntUnaryOperator`类型。
+
 > 添加`-Djdk.internal.lambda.dumpProxyClasses=.`启动参数，JDK会将生成的适配函数式接口的类源码输出到工作目录中。
 
 ## 7. 构造CallSite
@@ -320,11 +319,11 @@ Lambda1的整个运行时解析、链接流程完成。
 
 ![图片](/img/2024-08-26-浅析JVM invokedynamic指令和Java Lambda语法/20240826195708809.jpg)
 
-经过上述分析我们可以知道，**Lambda1**这种**无状态的、没有捕获外部变量(闭包)**的Lambda表达式的开销是很小的，只会在第一次调用时动态生成桥接的适配类，实例化后就通过`ConstantCallSite`缓存。
+经过上述分析我们可以知道，**Lambda1**这种**无状态的、没有捕获外部变量(闭包)**的Lambda表达式的开销是很小的，只会在第一次调用时动态生成桥接的适配类，实例化后就通过`ConstantCallSite`缓存。  
 后续所有的调用都不会再重新生成适配类、实例化适配类。
 
-但是，**Lambda2**则不同，因为Lambda捕获、依赖了(闭包)外部变量`num`，那么这个表达式就是有状态的。
-虽然同样只是会在第一次调用时动态生成桥接的适配类，但是每一次调用都会使用`num`变量重新实例化一个新的适配类实例。
+但是，**Lambda2**则不同，因为Lambda捕获、依赖了(闭包)外部变量`num`，那么这个表达式就是有状态的。  
+虽然同样只是会在第一次调用时动态生成桥接的适配类，但是每一次调用都会使用`num`变量重新实例化一个新的适配类实例。  
 这种场景下，其在性能和形式上就已经和传统的【匿名内部类】没有太大差别了。
 
 **Lambda3**本质上和**Lambda1**一样，只不过不需要Java编译器在编译时将Lambda代码语句抽取成独立的方法。
@@ -353,7 +352,7 @@ Lambda1的整个运行时解析、链接流程完成。
 
 # 9. 总结
 
-提笔的时候立意高远，想着要尽可能通俗详尽的写清楚所有涉及的技术点，但是越写越觉得事情不简单，最后只能是把博客标题从【深入剖析】修改为【浅析】。
+提笔的时候立意高远，想着要尽可能通俗详尽的写清楚所有涉及的技术点，但是越写越觉得事情不简单，最后只能是把博客标题从【深入剖析】修改为【浅析】。  
 这块内容牵涉的面太广，笔者没有能力也没有精力介绍到事无巨细、面面俱到，只能为大家抛砖引玉，大家可以配合后文【参考资料】多梳理、多实验，同时在评论区批评指正。
 
 1. invokedynamic指令不是业务开发者使用的。invokedynamic指令可以用来实现Lambda语法，但是它不是只能用来实现Lambda语法。这个指令对于JVM语言开发者比如Kotlin、Groovy、JRuby、Jython等会比较重要。
