@@ -1,0 +1,16 @@
+{
+  "name": "yungyu16.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tailwindcss -i ./_css/main.css -o ./css/main.css -m"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.1",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
