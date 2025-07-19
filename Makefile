@@ -2,7 +2,7 @@ init:
 	bundle -v || gem install bundler -V
 	bundle install
 
-preview: clean css serve
+preview: clean serve
 
 clean:
 	echo clean cache...
