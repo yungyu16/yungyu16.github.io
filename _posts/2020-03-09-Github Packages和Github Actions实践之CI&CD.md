@@ -78,13 +78,13 @@ Github Token是用户登录后生成的用户凭证，类似JWT登录令牌，�
 
 1、首先我们要进行登陆：
 
-```
+```shell
 $ docker login -u USERNAME -p TOKEN docker.pkg.github.com
 ```
 
 2、登录后我们将指定镜像重命名为Github Packages规定的Docker镜像名：
 
-```
+```shell
 $ docker tag IMAGE_ID docker.pkg.github.com/OWNER/REPOSITORY/IMAGE_NAME:VERSION
 ```
 
@@ -92,7 +92,7 @@ $ docker tag IMAGE_ID docker.pkg.github.com/OWNER/REPOSITORY/IMAGE_NAME:VERSION
 
 3、发布镜像
 
-```
+```shell
 $ docker push docker.pkg.github.com/OWNER/REPOSITORY/IMAGE_NAME:VERSION
 ```
 
