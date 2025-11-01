@@ -7,9 +7,9 @@ catalog: true
 tags:
   - Java
   - JVM
+  - Dubbo
+  - 性能优化
 ---
-
-> 本文转载自笔者发表于【得物技术】微信公众号的同名文章([这里](https://mp.weixin.qq.com/s/hxY-KTpwqyfSl1Mv9C-OAA))
 
 # 1. 背景
 
@@ -101,7 +101,7 @@ STW 和安全点的关系详见：JVM stop the world（https://zhuanlan.zhihu.co
 JVM 暴露了安全点的进、出事件日志，可以通过开关打开，后续可以通过安全点时间日志追溯。  
 添加如下启动参数，即可打开安全点事件日志：
 
-```
+```plaintext
 -XX:+PrintSafepointStatistics -XX:PrintSafepointStatisticsCount=1
 ```
 

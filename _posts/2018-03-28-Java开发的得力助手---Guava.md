@@ -6,7 +6,7 @@ typora-root-url: ../
 catalog: true
 tags:
   - Java
-  - 工具
+  - 杂谈
 ---
 
 # 导语

@@ -6,9 +6,7 @@ typora-root-url: ../
 catalog: true
 tags:
   - CI/CD
-  - Github
-  - 工作流
-  - devops
+  - DevOps
 ---
 
 ![img](/img/2020-03-09-Github Packages和Github Actions实践之CI&CD/1168906-20200309053307431-877799527.png)
@@ -78,13 +76,13 @@ Github Token是用户登录后生成的用户凭证，类似JWT登录令牌，�
 
 1、首先我们要进行登陆：
 
-```
+```shell
 $ docker login -u USERNAME -p TOKEN docker.pkg.github.com
 ```
 
 2、登录后我们将指定镜像重命名为Github Packages规定的Docker镜像名：
 
-```
+```shell
 $ docker tag IMAGE_ID docker.pkg.github.com/OWNER/REPOSITORY/IMAGE_NAME:VERSION
 ```
 
@@ -92,7 +90,7 @@ $ docker tag IMAGE_ID docker.pkg.github.com/OWNER/REPOSITORY/IMAGE_NAME:VERSION
 
 3、发布镜像
 
-```
+```shell
 $ docker push docker.pkg.github.com/OWNER/REPOSITORY/IMAGE_NAME:VERSION
 ```
 

@@ -5,9 +5,8 @@ date: 2024-02-04
 typora-root-url: ../
 catalog: true
 tags:
-  - 网络
   - Java
-  - HTTP
+  - 网络原理
 ---
 
 # 现象
@@ -15,7 +14,7 @@ tags:
 
 ![20240928151220273.jpg](/img/2024-02-04-HTTP请求偶现ConnectionClosedException/20240928151220273.jpg)
 
-```Properties
+```properties
 org.apache.http.ConnectionClosedException: Connection is closed
 ```
 
@@ -95,7 +94,7 @@ Undertow默认实现了http1.1 Keepalive特性，连接最大空闲时间默认�
 
 这个60s没啥问题，在SpringMVC中也支持通过如下配置来调整：
 
-```Properties
+```properties
 server.undertow.no-request-timeout=600s
 ```
 

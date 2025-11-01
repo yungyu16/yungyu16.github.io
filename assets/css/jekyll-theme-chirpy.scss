@@ -1,0 +1,101 @@
+---
+---
+
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+@use 'colors/light';
+@use 'colors/dark';
+@use "animation.scss";    // 背景动画样式
+@use "colorbox.scss";     // colorbox 样式
+@use "details.scss";      // details 元素样式
+
+/* 首页预览 post 标题字体加粗 */
+// #post-list .card-title {
+//   font-weight: bold;
+// }
+
+/* 主页 post 列表加阴影 */
+// #post-list .card {
+//     border-radius: 0.7rem;
+//     box-shadow: var(--language-border-color) 1px 1px 2px 1px;
+// }
+
+// prompt 边框阴影
+blockquote[class^='prompt-']{
+    box-shadow: var(--language-border-color) 1px 1px 2px 1px; /* 借用了代码框的边框颜色变量 */
+}
+
+// 代码框左上角颜色
+// div[class^=language-] .code-header::before{
+//   background-color: #fc625d;
+//   box-shadow: 1.25rem 0 0 #fdbc40, 2.5rem 0 0 #35cd4b;
+// }
+
+
+/* 侧边栏背景图片添加 */
+#sidebar {
+    background-image: url(/assets/img/sidebar.png); /* <- change background image */
+    background-size: cover; /* <- customize the image size */
+    background-repeat: no-repeat; /* <- no-repeat */
+    background-position: top; /* <- image position */
+}
+
+/* 侧边栏相关文字样式设置 */
+#sidebar .site-title {
+    color: #ffffff; 
+    text-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+#sidebar .site-subtitle {
+    color: #ffffff;
+    text-shadow: 2px 2px 3px rgba(0,0,0, 0.7);
+}
+#sidebar ul li.nav-item a.nav-link span{
+    font-size: 100%;
+}
+#sidebar ul li.nav-item a.nav-link {
+    color: #ffffff;
+}
+
+// 让目录不产生折叠效果
+.is-collapsed {
+  max-height: none !important;
+}
+
+html {
+  @media (prefers-color-scheme: light) {
+    &:not([data-mode]),
+    &[data-mode='light'] {
+      @include light.styles;
+    }
+
+    &[data-mode='dark'] {
+      @include dark.styles;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:not([data-mode]),
+    &[data-mode='dark'] {
+      @include dark.styles;
+    }
+
+    &[data-mode='light'] {
+      @include light.styles;
+    }
+  }
+}
+
+.content {
+  img {
+    border-radius: 12px;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.2), // 底部浅阴影
+      0 8px 16px rgba(0, 0, 0, 0.3); // 外围弥散阴影
+  }
+}
+

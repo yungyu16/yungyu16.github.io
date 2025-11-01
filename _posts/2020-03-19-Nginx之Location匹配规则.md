@@ -5,6 +5,7 @@ date: 2020-03-19
 typora-root-url: ../
 catalog: true
 tags:
+  - 杂谈
   - Nginx
 ---
 
@@ -37,7 +38,7 @@ location 为关键字 类似java中的case关键字，关键字后跟随可选�
 
 **特点：要求路径完全匹配**
 
-```fsharp
+```shell
  server {
      server_name website.com;
      location = /abcd {
@@ -55,7 +56,7 @@ location 为关键字 类似java中的case关键字，关键字后跟随可选�
 
 **特点：区分大小写的正则匹配**
 
-```bash
+```shell
 server {
 server_name website.com;
 	location ~ ^/abcd$ {
@@ -76,7 +77,7 @@ server_name website.com;
 
 **特点：不区分大小写的正则匹配**
 
-```bash
+```shell
  server {
      server_name website.com;
      location ~* ^/abcd$ {
