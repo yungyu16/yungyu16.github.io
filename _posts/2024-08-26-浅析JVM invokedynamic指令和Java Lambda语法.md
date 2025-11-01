@@ -131,7 +131,7 @@ Lambda表达式具体的实现涉及类文件结构、字节码指令结构、�
 
 ![图片](/img/2024-08-26-浅析JVM invokedynamic指令和Java Lambda语法/20240826195129052.jpg)
 
-```
+```plaintext
  0 iconst_3
  1 istore_1
  2 iconst_3
@@ -181,7 +181,7 @@ invokedynamic指令参数结构如下：
 
 invokedynamic指令需要指定其**期待BSM返回的方法特征**(出入参类型)和**BSM方法引用**。该参数以`CONSTANT_InvokeDynamic_info`结构存放在类文件的常量池结构中，invokedynamic用两个byte宽度的常量池索引号指定。
 
-```
+```plaintext
 CONSTANT_InvokeDynamic_info {
     u1 tag;
     u2 bootstrap_method_attr_index;
@@ -220,7 +220,7 @@ IntUnaryOperator anyName()；
 BSM方法序号指定了当前invokedynamic指令使用的BSM方法在BSM方法表中的索引。
 通俗来说，类文件中有一个数组，数组名称叫`BootstrapMethods`。其结构如下：
 
-```
+```plaintext
 BootstrapMethods_attribute {
     u2 attribute_name_index;
     u4 attribute_length;

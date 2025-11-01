@@ -44,7 +44,7 @@ recv()、WSARecv()两个方法调用在下面任意条件满足时会返回：
 
 接收方可以通过禁用TCP协议PSH位缓冲优化来避免延时，这种方式会影响所有TCP/IP连接的性能，但是会减少预期外的延时。这种方式在不能修改发送端(Linux/Telnet)使用PSH位且不能修改应用用于接收数据的缓冲区大小时很有用。
 
-```Plain%20Text
+```plaintext
 [HKEY_LOCAL_MACHINE \System \CurrentControlSet \Services \Afd \Parameters]IgnorePushBitOnReceives = 1
 ```
 
@@ -63,7 +63,7 @@ Windows 8.1 / Windows 2012允许在连接上调用WSARecv()方法时添加MSG_PU
 
 如果不能修改发送方应用，也可以通过修改下面的注册表键来实现：
 
-```Plain%20Text
+```plaintext
 [HKEY_LOCAL_MACHINE \System \CurrentControlSet \Services \Afd \Parameters]NonBlockingSendSpecialBuffering = 1
 ```
 
