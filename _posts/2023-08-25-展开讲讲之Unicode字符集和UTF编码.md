@@ -222,4 +222,4 @@ JVM内部用UTF16存储字符串，也就是说，内存上的String是UTF16编�
 
 [这次彻底搞懂Unicode编码和UTF-8、UTF-16和UTF-32 - 掘金](https://juejin.cn/post/7048869349335138340)
 
-https://lunawen.com/basics/20201129-luna-tech-unicode-plane/
+[https://lunawen.com/basics/20201129-luna-tech-unicode-plane/](https://lunawen.com/basics/20201129-luna-tech-unicode-plane/)

@@ -11,6 +11,7 @@ tags:
 ---
 
 当通过TCP进行通讯时，TCP协议会尝试通过将数据分块传输来优化性能。在进行文件和其他大数据传输时，这种方式的优化效果很好。  
+
 TCP实现这种优化的基础是TCP报文头里的Push Flag(PSH位)。
 
 [TCP报文头](http://en.wikipedia.org/wiki/Transmission_Control_Protocol)
