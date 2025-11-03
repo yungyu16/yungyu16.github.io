@@ -5,10 +5,11 @@ date: 2020-03-09
 typora-root-url: ../
 catalog: true
 tags:
-  - CI/CD
   - Github
-  - 工作流
+  - CI/CD
   - devops
+  - 工作流
+  - Docker
 ---
 
 ![img](/img/2020-03-09-Github Packages和Github Actions实践之CI&CD/1168906-20200309053307431-877799527.png)

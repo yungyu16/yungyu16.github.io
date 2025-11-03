@@ -6,6 +6,10 @@ typora-root-url: ../
 catalog: true
 tags:
   - Nginx
+  - Web服务器
+  - 路由配置
+  - 正则表达式
+  - URL匹配
 ---
 
 # 概述

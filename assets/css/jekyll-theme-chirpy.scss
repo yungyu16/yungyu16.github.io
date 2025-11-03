@@ -90,5 +90,12 @@ html {
   }
 }
 
-
+.content {
+  img {
+    border-radius: 12px;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.2), // 底部浅阴影
+      0 8px 16px rgba(0, 0, 0, 0.3); // 外围弥散阴影
+  }
+}
 
