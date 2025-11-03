@@ -103,7 +103,7 @@ UTF是Unicode的编码、或者说序列化，是特定领域、场景的序列�
 
 空间利用率低，空间利用率都不足2 / 3，这样会浪费很多存储空间，对于网络传输也是一种负担。
 
-![img](https://poizon.feishu.cn/space/api/box/stream/download/asynccode/?code=YWIxZmFiZDRiNGJkMzBiN2Q1OTQzMDJjNDI3MGI5N2RfclN2SkdvSjdRekRhcUVUNXJIaUM0bG54Z3JSSnhXNGFfVG9rZW46SjJIRWJLa2N0b3EzZXZ4QlhUVWNqSzFIbnFiXzE3MjY5ODYyNTk6MTcyNjk4OTg1OV9WNA)
+![20240922142428091](/img/2023-08-25-%E5%B1%95%E5%BC%80%E8%AE%B2%E8%AE%B2%E4%B9%8BUnicode%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8CUTF%E7%BC%96%E7%A0%81/20240922142428091.png)
 
 `0x10ffff`是Unicode最大码点。0x10=16，标识第16平面，0xfffff表示16平面内最大的字符码点
 
@@ -156,15 +156,15 @@ UTF是Unicode的编码、或者说序列化，是特定领域、场景的序列�
 
 ![img](/img/2023-08-25-展开讲讲之Unicode字符集和UTF编码/20240922142428131.jpg)
 
-1. 高位的（前面的）10位`+D800`
+2. 高位的（前面的）10位`+D800`
 
 ![img](/img/2023-08-25-展开讲讲之Unicode字符集和UTF编码/20240922142428279.jpg)
 
-1. 低位的（后面的）10位`+DC00`
+3. 低位的（后面的）10位`+DC00`
 
 ![img](/img/2023-08-25-展开讲讲之Unicode字符集和UTF编码/20240922142428284.jpg)
 
-1. 两部分合并起来，就得到了**【𫞂】**UTF16编码表示：`0xD86DDF82`
+4. 两部分合并起来，就得到了**【𫞂】**UTF16编码表示：`0xD86DDF82`
 
 ![img](/img/2023-08-25-展开讲讲之Unicode字符集和UTF编码/20240922142428286.jpg)
 

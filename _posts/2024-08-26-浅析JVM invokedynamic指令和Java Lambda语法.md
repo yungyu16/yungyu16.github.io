@@ -9,8 +9,6 @@ tags:
   - JVM
 ---
 
-> 本文转载自笔者发表于【得物技术】微信公众号的同名文章([这里](https://mp.weixin.qq.com/s/TFjG78agBAyzJHS-kQEamA))
-
 # 1. 导语
 
 尽管近年来JDK的版本发布愈发敏捷，当前最新版本号已经20+，但是日常使用中，JDK8还是占据了统治地位。

@@ -9,8 +9,6 @@ tags:
   - JVM
 ---
 
-> 本文转载自笔者发表于【得物技术】微信公众号的同名文章([这里](https://mp.weixin.qq.com/s/hxY-KTpwqyfSl1Mv9C-OAA))
-
 # 1. 背景
 
 在日常的技术支持过程中，经常会遇到如下玄学问题的咨询：
