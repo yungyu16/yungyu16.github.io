@@ -5,11 +5,9 @@ date: 2023-08-25
 typora-root-url: ../
 catalog: true
 tags:
+  - 序列化
   - 编解码
   - 字符编码
-  - 字符集
-  - Unicode
-  - Java
 ---
 
 # Unicode

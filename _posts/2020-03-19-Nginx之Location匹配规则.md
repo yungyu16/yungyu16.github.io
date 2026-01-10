@@ -5,11 +5,8 @@ date: 2020-03-19
 typora-root-url: ../
 catalog: true
 tags:
+  - 杂谈
   - Nginx
-  - Web服务器
-  - 路由配置
-  - 正则表达式
-  - URL匹配
 ---
 
 # 概述

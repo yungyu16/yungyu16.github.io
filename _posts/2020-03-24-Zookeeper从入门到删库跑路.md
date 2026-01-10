@@ -5,10 +5,7 @@ date: 2020-03-24
 typora-root-url: ../
 catalog: true
 tags:
-  - Java
   - 分布式系统
-  - Zookeeper
-  - 协调服务
 ---
 
 # 导语

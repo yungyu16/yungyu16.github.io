@@ -7,11 +7,8 @@ catalog: true
 tags:
   - Java
   - 序列化
-  - Dubbo
-  - Hessian
-  - 编解码
+  - 源码分析
   - RPC
-  - 对象图
 ---
 
 # 概述

@@ -5,11 +5,8 @@ date: 2024-02-04
 typora-root-url: ../
 catalog: true
 tags:
-  - 网络
   - Java
-  - HTTP
-  - 异常处理
-  - Keep-Alive
+  - 网络原理
 ---
 
 # 现象

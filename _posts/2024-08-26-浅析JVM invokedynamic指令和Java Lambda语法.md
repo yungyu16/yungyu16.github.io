@@ -7,11 +7,7 @@ catalog: true
 tags:
   - Java
   - JVM
-  - Lambda
-  - invokedynamic
-  - 字节码
   - 函数式编程
-  - MethodHandle
 ---
 
 # 1. 导语
